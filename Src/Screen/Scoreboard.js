@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(225,225,225,0.4)',
     height: 120,
     width: 100,
     borderRadius: 10,
@@ -152,11 +152,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '400',
-    color: 'black',
+    color: 'white',
     marginTop: 2,
   },
   sub: {
     fontWeight: '500',
+    color: 'white',
   },
   upperDiv: {
     display: 'flex',
@@ -191,7 +192,9 @@ const styles = StyleSheet.create({
     top: 25,
   },
   listDiv: {
-    marginTop: 50,
+    marginTop: 40,
+    backgroundColor: 'rgba(255,255,255,0.3)',
+    borderRadius: 8,
   },
   tableHead: {
     display: 'flex',
@@ -199,6 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: 'white',
     borderRadius: 4,
+    paddingVertical: 8,
   },
   heading: {
     color: 'black',

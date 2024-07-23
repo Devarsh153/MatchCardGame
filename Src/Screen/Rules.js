@@ -78,8 +78,8 @@ const Rules = props => {
               but to play the previouse cleared leveles.
             </Text>
             <Text style={styles.txt}>
-              3. To slected the level you can click on the level text on Main
-              page {'(ex.level : 3/7)'}.
+              3. To slected the level you can click on the top right button on
+              Main page.
             </Text>
           </View>
         </ScrollView>

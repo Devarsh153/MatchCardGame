@@ -74,7 +74,7 @@ const Card = ({
                     : 120,
                 width:
                   level == 1
-                    ? 100
+                    ? 110
                     : level == 2
                     ? 80
                     : level == 3
@@ -130,7 +130,7 @@ const Card = ({
                     : 120,
                 width:
                   level == 1
-                    ? 100
+                    ? 110
                     : level == 2
                     ? 80
                     : level == 3
@@ -202,8 +202,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 2,
-    marginVertical: 2,
   },
 
   card: {
@@ -214,16 +212,13 @@ const styles = StyleSheet.create({
     backfaceVisibility: 'hidden',
     backgroundColor: '#5FC9F8',
     borderRadius: 8,
-    padding: 0.3,
+    marginVertical: 2,
   },
 
   back: {
     transform: [{rotateY: '180deg'}],
     position: 'absolute',
-  },
-  text: {
-    fontSize: 14,
-    color: 'black',
+    marginLeft: -1.5,
   },
 });
 

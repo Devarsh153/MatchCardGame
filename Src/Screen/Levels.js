@@ -43,6 +43,17 @@ const Levels = props => {
               style={{height: 28, width: 28}}
             />
           </TouchableOpacity>
+          {/* <Text style={styles.header}>Levels</Text> */}
+        </View>
+        <View
+          style={{
+            alignSelf: 'center',
+            marginTop: 30,
+          }}>
+          <Image
+            source={require('../Assets/Images/levHeader.png')}
+            style={{width: 320, height: 50}}
+          />
           <Text style={styles.header}>Levels</Text>
         </View>
         <View style={styles.container}>
@@ -126,7 +137,9 @@ const styles = StyleSheet.create({
   header: {
     color: 'white',
     fontSize: 18,
-    marginLeft: 8,
     fontWeight: '500',
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 12,
   },
 });

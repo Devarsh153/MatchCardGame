@@ -405,76 +405,112 @@ const Home = props => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: '#081829'}}>
+    <SafeAreaView style={{backgroundColor: '#081829', height: '100%'}}>
       <ImageBackground
         source={require('../Assets/Images/BG1.webp')}
         style={styles.bg}>
-        <View>
+        <View style={{flex: 1}}>
           <View style={styles.upperDiv}>
             <TouchableOpacity
-              style={{alignItems: 'center', width: '20%'}}
-              onPress={() => props.navigation.navigate('Rules')}>
-              <Image
-                source={require('../Assets/Images/info.png')}
-                tintColor={'white'}
-                style={styles.icon}
-              />
-              <Text style={[styles.txt, {fontSize: 12}]}>Rules</Text>
-            </TouchableOpacity>
-            <Text style={styles.time}>Timer : {timeLeft}</Text>
-            <TouchableOpacity
-              style={{alignItems: 'center', width: '19%'}}
-              onPress={() => props.navigation.navigate('Scoreboard')}>
-              <Image
-                source={require('../Assets/Images/score.png')}
-                tintColor={'white'}
-                style={[styles.icon]}
-              />
-              <Text style={[styles.txt, {fontSize: 12}]}>Scores</Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
-            <View
+              onPress={() => props.navigation.navigate('Scoreboard')}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 width: '24%',
                 alignItems: 'center',
-                marginHorizontal: 10,
-                marginTop: 20,
               }}>
               <Image
                 source={require('../Assets/Images/trophy.png')}
                 style={styles.icon}
               />
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={[styles.txt, {fontSize: 12}]}>Heighest Score</Text>
+                <Text style={[styles.txt, {fontSize: 10}]}>Heighest Score</Text>
                 <Text style={[styles.txt, {fontWeight: '500'}]}>
-                  {highScore?.moves} Moves
+                  {highScore?.sec} seconds
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View style={{display: 'flex', flexDirection: 'row'}}>
+              <View>
+                <TouchableOpacity
+                  style={[styles.topBox, {marginRight: 10}]}
+                  onPress={() => props.navigation.navigate('Rules')}>
+                  <Image
+                    source={require('../Assets/Images/info.png')}
+                    tintColor={'white'}
+                    style={{height: '100%', width: '100%'}}
+                  />
+                </TouchableOpacity>
+                <Text style={[styles.txt, {fontSize: 12, marginLeft: 1}]}>
+                  Rules
+                </Text>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={[styles.topBox]}
+                  onPress={() => props.navigation.navigate('Levels')}>
+                  <Image
+                    source={require('../Assets/Images/level.png')}
+                    tintColor={'white'}
+                    style={{height: '100%', width: '100%'}}
+                  />
+                </TouchableOpacity>
+                <Text style={[styles.txt, {fontSize: 12}]}>Levels</Text>
+              </View>
+            </View>
+          </View>
+
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              alignSelf: 'center',
+            }}>
+            <View style={styles.timerDiv}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <View>
+                  <Image
+                    source={require('../Assets/Images/time.png')}
+                    tintColor={'white'}
+                    style={{height: 20, width: 20, marginRight: 4}}
+                  />
+                </View>
+                <Text style={[styles.time, {fontSize: 30}]}>
+                  {timeLeft}
+                  <Text style={{fontSize: 20}}>s</Text>
                 </Text>
               </View>
             </View>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate('Levels')}>
-              <Text style={[styles.time, {marginRight: 20}]}>
-                Level : {currentLevel}/7
+            <View style={styles.timerDiv}>
+              <Text style={[styles.txt, {textAlign: 'center'}]}>
+                Moves : {moves}
               </Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={[styles.txt, {textAlign: 'center', marginBottom: 20}]}>
-            Moves : {moves}
-          </Text>
-          <View
-            style={{
-              height: 520,
-              justifyContent: 'center',
-            }}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(255,255,255,0.3)',
+                  paddingVertical: 6,
+                  paddingHorizontal: 10,
+                  borderRadius: 6,
+                }}
+                onPress={() => props.navigation.navigate('Levels')}>
+                <Image
+                  source={require('../Assets/Images/flag.png')}
+                  tintColor={'white'}
+                  style={{height: 20, width: 20, marginTop: 4, marginRight: 4}}
+                />
+                <Text style={[styles.time]}>{currentLevel}/7</Text>
+              </View>
+            </View>
             <View style={styles.cardDiv}>
               {shuffle.map((item, index) => {
                 return (
@@ -491,16 +527,16 @@ const Home = props => {
                 );
               })}
             </View>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                isStart ? reInit() : setIsStart(true);
+              }}>
+              <Text style={{fontWeight: '500', color: 'black'}}>
+                {isStart ? 'Reset Game' : 'Start Game'}
+              </Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              isStart ? reInit() : setIsStart(true);
-            }}>
-            <Text style={{fontWeight: '500', color: 'black'}}>
-              {isStart ? 'Reset Game' : 'Start Game'}
-            </Text>
-          </TouchableOpacity>
         </View>
 
         <Modal transparent={true} visible={isVisisble} animationType="fade">
@@ -581,7 +617,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '500',
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   txt: {
     color: 'white',
@@ -593,8 +629,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 14,
     borderRadius: 10,
-    width: '80%',
+    width: '90%',
     alignSelf: 'center',
+    marginVertical: 10,
   },
   icon: {
     height: 32,
@@ -603,20 +640,21 @@ const styles = StyleSheet.create({
   upperDiv: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     paddingHorizontal: 0,
-    marginTop: 10,
+    marginTop: 16,
     width: '96%',
     alignSelf: 'center',
   },
   cardDiv: {
-    width: '100%',
+    width: '88%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginBottom: 18,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+
+    alignSelf: 'center',
   },
   alert: {
     backgroundColor: 'white',
@@ -639,5 +677,30 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginTop: 10,
     zIndex: 1000,
+  },
+  timeText: {
+    color: 'white',
+    fontSize: 12,
+  },
+  timerDiv: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: 10,
+    width: '96%',
+    alignSelf: 'center',
+    paddingHorizontal: 18,
+    marginBottom: 20,
+  },
+  topBox: {
+    alignItems: 'center',
+    width: 32,
+    borderWidth: 1,
+    height: 32,
+    borderColor: 'white',
+    borderRadius: 4,
+    padding: 6,
+    justifyContent: 'center',
   },
 });
